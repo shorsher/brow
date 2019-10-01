@@ -13,13 +13,13 @@ fn main() {
             .index(1))
         .get_matches();
 
-
     let docker_id = matches.value_of("id").unwrap();
 
-
     let mut docker_list = Command::new("docker");
-    docker_list.arg("inspect")
-               .arg(docker_id);
+    docker_list.arg("exec")
+               .arg("-it")
+               .arg(docker_id)
+               .arg("sh");
     docker_list.status()
                .expect("ls command failed to start");
 }
